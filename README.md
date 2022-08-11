@@ -1,70 +1,120 @@
-# Getting Started with Create React App
+# Coding Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Requirements
+You are required to provide an application that allows a tradie to see their jobs. Jobs have the following information associated with them:
+* Unique job identifier.
+* Status: one of **"scheduled", "active", "invoicing", “to priced” or “completed”.**
+* Creation date and time.
+* General information like name and contact details of the client.
 
-## Available Scripts
+The tradie can also make notes for each job. A job can have any number of notes associated with them.
 
-In the project directory, you can run:
+The tradie should be able to:
 
-### `npm start`
+* Filter and sort the list of jobs.
+* Click on a job in the list to view their details and add/edit notes for that job.
+* Change the status of a job.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Notes
+1. Construct one part of the application (either font-end or back-end)
+2. You may use any programming languages, data store and frameworks you want.
+3. Think about all of the supporting code you may need for a professionally built application.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+-----
 
-### `npm test`
+## About my solution:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The application is built using React and Mantine https://mantine.dev (my favourite component library) for the frontend.
+And (Firebase) Cloud Firestore for the backend.
 
-### `npm run build`
+### Backend design
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Firestore](https://user-images.githubusercontent.com/99773634/184110657-bd0615a2-0761-42b6-a8d6-ffd299c8ea26.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The clients table (document) contains unique ID's (in this case referring to a Tradie's UID e.g. from an Auth provider).
+Under that Tradies' UID is a Collection of Clients with identifiers such as 'CUID-100'.
+Within the client collection item there is a document containing related contact information and job information (far right section of image).
 
-### `npm run eject`
+### Frontend Usage
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The application can be viewed here: https://tjt.oliverarmstrongdev.com
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![TJT](https://user-images.githubusercontent.com/99773634/184112000-6e0cd3ad-45fc-432b-9e76-6747689d39b3.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Starting with the left sidebar titled "Job List:"
+This contains Filter and Sort buttons and the list of jobs for the current Tradie.
 
-## Learn More
+The Filter button (funnel) allows you to filter by status type.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![statuses](https://user-images.githubusercontent.com/99773634/184115472-421dee75-bec1-44d9-9899-811a27af6ec1.png)
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The Sort button (arrows) allows you to move the new jobs to the top of the list (or not).
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![sort](https://user-images.githubusercontent.com/99773634/184115568-c03cdb70-f058-40c5-b987-e333780b471b.png)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Each Job has a single Letter and is also colour coded to help quickly identify the Job Status of each job in the list.
+It also contains the job title and Unique job identifier.
 
-### Advanced Configuration
+![jobitem](https://user-images.githubusercontent.com/99773634/184115846-7da4c860-5ef5-4925-b268-52ea2fea38ad.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+When you click on a job in the list it loads the job details in the main job card section...
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+### The main job card section: (starting at the top)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![jobcard](https://user-images.githubusercontent.com/99773634/184116226-10af7495-1828-46b9-b6de-c4dbfd3529c7.png)
+
+
+Has a "Job Status" label and a button with the Job Status and colour correspoding to the status colour.
+
+When you click the button it displays all selectable statuses. When you Click on a different status it changes the status of the job immediately.
+The Button text changes to the status name and the colour also changes accordingly.
+
+![jobstatbutton](https://user-images.githubusercontent.com/99773634/184116497-d7b9a7d7-01a6-4fc0-a9e5-50268a8adc10.png)
+
+
+* Next there is the **unique job identifier** with job title.
+* The created date and time.
+* The client details with clickable email address and mobile number.
+
+![title](https://user-images.githubusercontent.com/99773634/184116781-33858a61-b839-4eac-abdf-e38751aaabea.png)
+
+-----
+
+The final section is the **notes section**.
+
+![notes2](https://user-images.githubusercontent.com/99773634/184117343-b0dc9698-0a59-401a-9030-9ff6c09e18e8.png)
+
+
+You can add a new note and it will open a new Richtext editing area (you can also cancel creating the new note).
+
+A note with no text will not save but once you save a new note with text, it saves immediately and is displayed at the bottom of the note trail.
+
+Each note is read-only unless you click on the Edit button - once you click save again the note becomes read-only again.
+
+The delete button... deletes a note from the database.
+
+### Final Comments
+
+The application uses mainly local state with minimal database calls.
+For state management I used React Context and a Reducer to manage 99% of the state, with the exception of a one or two of the components for which it didn't make sense to have in global state.
+
+The app subscribes to the firestore database, on load, for realtime data updates - this was mainly so that the notes were added and deleted without having to refresh the page or do some funky re-rendering.
+
+
+
+
+
+## There are no API keys stored in the config for Firebase, so I'm not sure if this app will run if you clone or download the repo - that's why I made the site live here - https://tjt.oliverarmstrongdev.com
+
+
+
+
