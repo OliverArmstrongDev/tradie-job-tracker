@@ -7,8 +7,8 @@ const ClientDetails = () => {
 
   return (
     <div>
-      <Paper shadow="sm" radius="md" p="xl">
-        <Table align="center" verticalSpacing="xs">
+      <Paper shadow="sm" radius="md" p="lg">
+        <Table>
           <thead>
             <tr>
               <th>Client Name</th>

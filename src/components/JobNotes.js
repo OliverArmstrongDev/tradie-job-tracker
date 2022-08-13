@@ -67,7 +67,7 @@ const JobNotes = ({ noteData, isNewNote, noteKey, setShowNewNote }) => {
             ["unorderedList", "h1", "h2", "h3"],
             ["alignLeft", "alignCenter", "alignRight"],
           ]}
-          value={noteText}
+          value={noteText ? noteText: ""}
           onChange={setNoteText}
         />
       </Paper>

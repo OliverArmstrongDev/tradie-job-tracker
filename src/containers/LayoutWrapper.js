@@ -8,6 +8,7 @@ import {
   MediaQuery,
   Burger,
   useMantineTheme,
+  ScrollArea,
 } from '@mantine/core';
 import JobList from '../components/JobList';
 
@@ -23,11 +24,11 @@ function LayoutWrapper(props) {
        
       }}
       navbarOffsetBreakpoint="sm"
-      asideOffsetBreakpoint="sm"
       navbar={
-        <Navbar color={theme.colors.gray[0]} p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-            <Navbar.Section mb={10}><h3>Jobs List:</h3></Navbar.Section>
+        <Navbar color={theme.colors.gray[0]} p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ base: 260 }}>
+            <Navbar.Section  grow component={ScrollArea} mb={10}><h3>Jobs List:</h3>
             <JobList />
+            </Navbar.Section>
         </Navbar>
       }
       footer={

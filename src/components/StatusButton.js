@@ -20,15 +20,19 @@ const StatusButton = () => {
   };
 
   useEffect(() => {
-    const initialButtonColour = state.statuses
-      .filter((status) => status.status === state.jobStatus)
-      .map((res) => res.colour)
-      .toString();
-    dispatch({
-      type: "SET_CURRENT_STATUS_COLOUR",
-      payload: initialButtonColour,
-    });
-  }, [state.jobStatus]);
+    try {
+      const initialButtonColour = state.statuses
+        .filter((status) => status.status === state.jobStatus)
+        .map((res) => res.colour)
+        .toString();
+      dispatch({
+        type: "SET_CURRENT_STATUS_COLOUR",
+        payload: initialButtonColour,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [state.jobStatus, state.statuses, dispatch]);
 
   return (
     <div>
