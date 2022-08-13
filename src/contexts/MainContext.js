@@ -25,7 +25,7 @@ const INIT_CLIENT_LIST_OBJECT = {
     },
     {
       status: "Scheduled",
-      colour: "brown",
+      colour: "blue",
     },
     {
       status: "Invoicing",
@@ -130,6 +130,7 @@ export const MainContextProvider = ({ children }) => {
   const CurrentlyViewedRecordUID = useRef();
 
   useEffect(() => {
+    try {
     const collectionRef = collection(db, `clients/${state.AuthUID}/clientList`);
 
     const unsub = onSnapshot(collectionRef, (snapshot) => {
@@ -153,6 +154,9 @@ export const MainContextProvider = ({ children }) => {
       }
     });
     return () => unsub();
+  } catch (err) {
+    console.error(err);
+  }
   }, [state.AuthUID]);
 
   const getClientDataByClientID = async (CUID) => {

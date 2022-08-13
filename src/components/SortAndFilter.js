@@ -4,7 +4,7 @@ import { IconFilter } from "@tabler/icons";
 import { IconArrowsSort } from "@tabler/icons";
 import { MainContext } from "../contexts/MainContext";
 
-const SortAndFilter = ({ sort, setFilterBy }) => {
+const SortAndFilter = () => {
   const { state, dispatch } = useContext(MainContext);
 
   const filterIcons = [
@@ -78,7 +78,7 @@ const SortAndFilter = ({ sort, setFilterBy }) => {
   return (
     <>
       {filterIcons.map((icon, idx) => (
-        <Popover key={idx} width={200} position="right" withArrow shadow="md">
+        <Popover key={idx} width={200} position="bottom" withArrow shadow="md">
           <Popover.Target>
             <ActionIcon size="sm">
               {icon.sortBy ? <IconArrowsSort /> : <IconFilter />}
